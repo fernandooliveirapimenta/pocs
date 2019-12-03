@@ -64,12 +64,15 @@ public class RssController {
 
             String titulo = itemElement.getElementsByTagName("title").item(0).getTextContent();
             String descricao = itemElement.getElementsByTagName("description").item(0).getTextContent();
-            if(titulo.contains("/") && titulo.contains(":") && descricao != null && !descricao.isEmpty()) {
+            String data = itemElement.getElementsByTagName("pubDate").item(0).getTextContent();
+            if(titulo.contains("/")
+                    && titulo.contains(":")
+                    && descricao != null
+                    && !descricao.isEmpty()
+                    && data != null
+                    && !data.isEmpty()) {
                 final Map<Object, Object> itemObject = new HashMap<>();
                 String link = itemElement.getElementsByTagName("link").item(0).getTextContent();
-                String data = itemElement.getElementsByTagName("pubDate").item(0).getTextContent();
-
-
                 titulo = StringEscapeUtils.unescapeHtml4(titulo);
                 itemObject.put("tipo", titulo.split(":")[0]);
                 itemObject.put("titulo", titulo);
