@@ -9,10 +9,15 @@ import java.util.Map;
 @RestController
 public class FernandoController {
 
+    private final FernandoService fernandoService;
+
+    public FernandoController(FernandoService fernandoService) {
+        this.fernandoService = fernandoService;
+    }
+
     @GetMapping
     public Map<String, String> getUser(){
-        Map<String, String> r = new HashMap<>();
-        r.put("nome", "fernando");
-        return r;
+        return fernandoService.getUser();
     }
 }
+
